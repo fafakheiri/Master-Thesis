@@ -1,0 +1,64 @@
+# General (hyper)parameters
+params:
+  seed: 777
+  do_train: True
+  do_eval: True
+  do_predict: True
+  src: en_XX 
+  tgt: fa_IR 
+  lower_case: True # Tokenizer
+  normalization: True # Tokenizer
+  checkpoint: facebook/mbart-large-50
+  max_len: 20
+  # dataloader (bs=batch size)
+  train_bs: 16 
+  dev_bs: 16 
+  test_bs: 16
+  # bs per device
+  device_train_bs: 16
+  device_eval_bs: 16
+  epoch: 2
+   # log, save, and evaluate every n steps
+  logging_step: 1000
+  save_steps: 1000
+  eval_steps: 1000
+  save: 30
+  early_stop: 5
+  weight_decay: 0
+  warmup_steps: 0
+  fp16: False # Only can be used on CUDA devices
+  lr: 1e-4
+  evaluation: steps
+  best_model: True
+  optim: adamw_torch
+  hidden_dropout_prob: 0.1
+  # eval metric
+  metric_best_model: eval_bleu
+  predict_with_generate: True # Otherwise you get: out of range integral type conversion attempted
+  use_mps_device: False # Using Apple Silicon chip
+# Dataset setup
+dataset:
+  train_path: ''
+  dev_path: ''
+  test_path: ''
+  predict_path: ''
+# Splitter setup
+splitter:
+  active: True
+  path: ''
+  split: 0.2
+# MLFlow config
+mlflow:
+  exp_name: final_shot
+  params: "_1"
+MT:
+  do_train: False
+  do_eval: False
+  do_predict: True
+  train_path: ''
+  dev_path: ''
+  test_path: ''
+  predict_with_generate: True # Otherwise you get: out of range integral type conversion attempted
+  src: en_XX 
+  tgt: fa_IR
+  checkpoint: facebook/mbart-large-50
